@@ -1,28 +1,25 @@
 What is this package
 ====================
 
-This package contains an interface used by many objects to declare they represent a single URL.
+This package contains an interface used by many objects to declare they have the ability
+to paginate the result set they represent.
 
-If your objects represent an URL (for instance your object is a link, they should implement *UrlInterface*.
-An object implementing this interface will return a single URL, as a string when the "getUrl()" method is called.
-
-This is a very simple and useful system for classes representing links, pages, etc...
+If your objects represent a resultset (for instance your object is a resultset from a query to a database), 
+and if you can paginate this result set (return only a part of the result using an offset and a limit), 
+then your object should implement *PaginateInterface*.
 
 ```php
-namespace Mouf\Utils;
-
-interface UrlInterface {
+interface PaginableInterface {
 	
 	/**
-	 * Returns the URL represented by this object, as a string.
+	 * Paginates the result set.
 	 * 
-	 * @return string
+	 * @param int $limit
+	 * @param int $offset
 	 */
-	public function getUrl();
+	public function paginate($limit, $offset = 0);
 }
 ```
-
-This package comes with a simple **Url** class that implements this interface.
 
 Mouf package
 ------------
